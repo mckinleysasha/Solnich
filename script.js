@@ -1,23 +1,26 @@
 function displayTemp(response) {
-  let temperatureElement = document.querySelector("h1.main-temp");
-  let temperature = Math.round(response.data.temperature.current);
-  let mainCity = document.querySelector("#city");
-  let descriptionElement = document.querySelector("#description");
-  let humidityElement = document.querySelector("#humidity");
-  let windElement = document.querySelector("#wind");
-  let timeElement = document.querySelector("#time");
-  let date = new Date(response.data.time * 1000);
-  let iconElement = document.querySelector("#icon");
+    const temperatureElement = document.querySelector("h1.main-temp");
+    const temperature = Math.round(response.data?.temperature?.current || 0); // Fallback to 0 if undefined
+    const mainCity = document.querySelector("#city");
+    const descriptionElement = document.querySelector("#description");
+    const humidityElement = document.querySelector("#humidity");
+    const windElement = document.querySelector("#wind");
+    const timeElement = document.querySelector("#time");
+    const date = new Date(response.data?.time * 1000 || Date.now()); // Fallback to current time if undefined
+    const iconElement = document.querySelector("#icon");
 
+    // Check if the condition and icon are available
+    if (response.data?.condition?.icon_url) {
+        iconElement.innerHTML = <img src="${response.data.condition.icon_url}" class="main-temp-icon" alt="Weather icon" />;
+    }
 
-
-  iconElement.innerHTML = `<img src ="${response.data.condition.icon_url}" class="main-temp-icon" />`;
-  mainCity.innerHTML = response.data.city;
-  descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innerHTML = response.data.temperature.humidity;
-  windElement.innerHTML = response.data.wind.speed;
-  timeElement.innerHTML = formatDate(date);
-  temperatureElement.innerHTML = temperature;
+    // Use fallback values to avoid issues if data is missing
+    mainCity.textContent = response.data?.city || "Unknown City";
+    descriptionElement.textContent = response.data?.condition?.description || "No description available";
+    humidityElement.textContent = ${response.data?.temperature?.humidity || 0}%;
+    windElement.textContent = ${response.data?.wind?.speed || 0} m/s;
+    timeElement.textContent = formatDate(date);
+    temperatureElement.textContent = temperature;
 }
 
 function formatDate(date) {
