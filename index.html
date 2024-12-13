@@ -13,8 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <title>Malt</title>
   </head>
-  <body>
-    <div class="my-weather-app">
+<body>
+    <div class="weather-app">
       <header>
         <form class="search-form" id="search-form">
           <input
@@ -32,19 +32,20 @@
           <div>
             <h1 class="weather-app-city" id="city"></h1>
             <p class="weather-app-details">
-              <span id="time"></span>, <span id="description"></span>
+              <span id="time"></span>,
+              <span id="description"></span>
               <br />
               Humidity: <strong id="humidity"></strong>, Wind:
               <strong id="wind-speed"></strong>
             </p>
           </div>
-          <div class="weather-app-temp-container">
-            <div>
-              <div id="icon"></div>
-            </div>
-            <div class="weather-app-temp" id="temperature"></div>
-            <div class="weather-app-unit">°C</div>
+          <div class="weather-app-temperature-container">
+            <div id="icon"></div>
+            <div class="weather-app-temperature" id="temperature"></div>
+            <div class="weatehr-app-unit">°C</div>
           </div>
+        </div>
+        <div class="weather-forecast" id="forecast">
         </div>
       </main>
 <footer>
