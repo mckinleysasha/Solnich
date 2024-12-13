@@ -19,6 +19,7 @@ function refreshWeather(response) {
   
   getForecast(response.data.city);
 }
+
 function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
